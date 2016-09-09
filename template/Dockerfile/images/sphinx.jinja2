@@ -10,6 +10,7 @@ RUN /usr/local/bin/apk-install \
     # GRAPHVIZ
     graphviz \
     ttf-dejavu \
+    make \
     && pip install --upgrade sphinxcontrib-googlechart \
     && pip install --upgrade sphinxcontrib-googlemaps \
     && pip install --upgrade sphinxcontrib-httpdomain \
@@ -20,5 +21,9 @@ RUN /usr/local/bin/apk-install \
     && pip install t3SphinxThemeRtd \
     && pip install t3fieldlisttable \
     && pip install t3tablerows \
-    && pip install t3targets
+    && pip install t3targets \
+    && apk add -U --repository http://dl-3.alpinelinux.org/alpine/edge/main poppler \
+    && apk add -U --repository http://dl-3.alpinelinux.org/alpine/edge/testing texlive-full \
+    && ln -s /usr/bin/mktexlsr /usr/bin/mktexlsr.pl \
+    && ln -s /usr/bin/mktexlsr /usr/share/texmf-dist/scripts/texlive/mktexlsr.pl
 {%- endmacro %}
