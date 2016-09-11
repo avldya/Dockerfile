@@ -1,6 +1,15 @@
-{% import 'Dockerfile/provision.jinja2' as provision %}
+#+++++++++++++++++++++++++++++++++++++++
+# Dockerfile for webdevops/sphinx:tex
+#    -- automatically generated  --
+#+++++++++++++++++++++++++++++++++++++++
 
-{% macro alpine() -%}
+FROM webdevops/bootstrap:alpine-3
+
+MAINTAINER info@webdevops.io
+LABEL vendor=WebDevOps.io
+LABEL io.webdevops.layout=8
+LABEL io.webdevops.version=0.55.3
+
 RUN /usr/local/bin/apk-install \
     # General sphinx
     py-pillow \
@@ -21,14 +30,10 @@ RUN /usr/local/bin/apk-install \
     && pip install t3fieldlisttable \
     && pip install t3tablerows \
     && pip install t3targets
-{%- endmacro %}
 
-{% macro alpine_tex() -%}
 RUN /usr/local/bin/apk-install \
     make \
     && apk add -U --repository http://dl-3.alpinelinux.org/alpine/edge/main poppler \
     && apk add -U --repository http://dl-3.alpinelinux.org/alpine/edge/testing texlive-full \
     && ln -s /usr/bin/mktexlsr /usr/bin/mktexlsr.pl \
     && rm -rf var/cache/apk/*
-
-{%- endmacro %}

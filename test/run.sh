@@ -947,6 +947,7 @@ ENV VARNISH_BACKEND_HOST \"google.com\"
     setEnvironmentOsFamily "alpine"
 
     OS_VERSION="3" runTestForTag "latest"
+    OS_VERSION="3" runTestForTag "tex"
 
     waitForTestRun
 }
